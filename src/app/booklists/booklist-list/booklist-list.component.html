@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click) = "onNewBooklist()">New Booklist</button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <app-booklist-item
+      *ngFor="let booklist of booklists; let i = index"
+      [booklist]="booklist"
+      [index]="i"
+    >
+    </app-booklist-item>
+  </div>
+</div>

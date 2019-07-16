@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12"></div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ booklist.firstName }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        Manage Booklist
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a style="cursor: pointer;" (click)="onEditBooklist()">Edit Booklist</a>
+        </li>
+        <li>
+          <a style="cursor: pointer;" (click)="onDeleteBooklist()"
+            >Delete Booklist</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let book of booklist.books">
+        {{ book.title }} - {{ book.authorLast }}, {{ book.authorFirst }},
+        {{ book.isbn }}
+        <hr />
+        Link
+      </li>
+    </ul>
+  </div>
+</div>

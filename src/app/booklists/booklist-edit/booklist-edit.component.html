@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success">Save</button>
+          <button class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              formControlName="name"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12">
+              <div class="form-group">
+                  <label for="lastName"> Last Name</label>
+                  <input type="text"
+                  id="lastName"
+                  formControlName="lastName"
+                  class= "form-control">
+              </div>
+          </div>
+      </div>
+      <div class="row">
+            <div class="col-xs-12">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let book of booklist.books">
+                  {{ book.title }} - {{ book.authorLast }}, {{ book.authorFirst }},
+                  {{ book.isbn }}
+                  <hr />
+                  Link
+                </li>
+              </ul>
+            </div>
+          </div>
+      <div class="row">
+          <div class="col-xs-12">
+              <h4>Add Books</h4>
+              <input type="text" placeholder="Filter...">
+              <hr>
+              <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let masterbook of masterlist; let i = index"
+                  >{{masterbook.title}}
+                <button class="btn btn-success pull-right">Add</button></li>
+              </ul>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>
