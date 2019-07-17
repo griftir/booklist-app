@@ -7,10 +7,10 @@ import { Subject } from 'rxjs';
 export class BooklistService {
   booklistsChanged = new Subject<Booklist[]>();
   private booklists: Booklist[] = [
-    new Booklist('Magno', 'William', [
+    new Booklist('William', 'Magno', [
       new Book('How to Poop', 'Smith', 'Jodn', 'T8928')
     ]),
-    new Booklist('Magno', 'Sarah', [
+    new Booklist('Sarah', 'Magno', [
       new Book('How to Pee', 'Jerkface', 'Billy', 'T8928'),
       new Book('How to Pee', 'Jerkface', 'Billy', 'T8928'),
       new Book('How to Pee', 'Jerkface', 'Billy', 'T8928'),

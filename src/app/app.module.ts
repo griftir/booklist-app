@@ -14,6 +14,8 @@ import { BooklistService } from './booklists/booklist.service';
 import { MasterListService } from './shared/masterlist.service';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AddBooksComponent } from './booklists/booklist-edit/add-books/add-books.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FilterBooksPipe } from './filter-books.pipe';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,14 @@ import { AddBooksComponent } from './booklists/booklist-edit/add-books/add-books
     BooklistStartComponent,
     BooklistEditComponent,
     BooklistDetailComponent,
-    AddBooksComponent
+    AddBooksComponent,
+    FilterBooksPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [BooklistService, MasterListService],
   bootstrap: [AppComponent]

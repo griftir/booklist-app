@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+    <form [formGroup]="booklistForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success">Save</button>
-          <button class="btn btn-danger">Cancel</button>
+          <button  type="submit" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
         </div>
       </div>
       <div class="row">
@@ -13,47 +13,59 @@
             <label for="firstName">First Name</label>
             <input
               type="text"
-              id="firstName"
-              formControlName="name"
+              id="studentFirst"
+              formControlName="studentFirst"
               class="form-control"
             />
           </div>
         </div>
       </div>
       <div class="row">
-          <div class="col-xs-12">
-              <div class="form-group">
-                  <label for="lastName"> Last Name</label>
-                  <input type="text"
-                  id="lastName"
-                  formControlName="lastName"
-                  class= "form-control">
-              </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="lastName"> Last Name</label>
+            <input
+              type="text"
+              id="studentLast"
+              formControlName="studentLast"
+              class="form-control"
+            />
           </div>
+        </div>
       </div>
       <div class="row">
-            <div class="col-xs-12">
-              <ul class="list-group">
-                <li class="list-group-item" *ngFor="let book of booklist.books">
-                  {{ book.title }} - {{ book.authorLast }}, {{ book.authorFirst }},
-                  {{ book.isbn }}
-                  <hr />
-                  Link
-                </li>
-              </ul>
+        <div class="col-xs-12" formArrayName="books">
+          <div
+            class="col-xs-8"
+            *ngFor="let bookCtrl of getControls(); let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px"
+          >
+            <div class="form-control pull-left">
+              {{ bookCtrl.value["title"] }} |
+              {{ bookCtrl.value["authorLast"] }},
+              {{ bookCtrl.value["authorFirst"] }} | {{ bookCtrl.value["isbn"] }}
+              <button class="btn btn-danger pull-right" (click)="onDeleteBook(i)">Remove</button>
             </div>
           </div>
+        </div>
+      </div>
       <div class="row">
-          <div class="col-xs-12">
-              <h4>Add Books</h4>
-              <input type="text" placeholder="Filter...">
-              <hr>
-              <ul class="list-group">
-                  <li class="list-group-item" *ngFor="let masterbook of masterlist; let i = index"
-                  >{{masterbook.title}}
-                <button class="btn btn-success pull-right">Add</button></li>
-              </ul>
-          </div>
+        <div class="col-xs-12">
+          <h4>Add Books</h4>
+          <input type="text" placeholder="Filter..." [(ngModel)]="filteredStatus" [ngModelOptions]="{standalone: true}"/>
+          <hr />
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let masterbook of masterlist | filterBooks:filteredStatus:'title'; let i=index"
+              style="margin-top: 10px"
+            >
+              {{ masterbook.title }}, {{masterbook.authorLast}}, {{masterbook.authorFirst}}, {{masterbook.isbn}}
+              <button  type="button" class="btn btn-success pull-right" (click)="onAddBook(i)">Add</button>
+            </li>
+          </ul>
+        </div>
       </div>
     </form>
   </div>
